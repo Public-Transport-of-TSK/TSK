@@ -19,7 +19,7 @@ function displayPointsOfInterest(type, icon, color) {
     const bounds = map.getBounds();
 
     // Fetch OSM data for the Trenciansky Kraj region, including points of interest of the specified type
-    axios.get(`https://overpass-api.de/api/interpreter?data=[out:json];(node["${type}"](48.3711,17.3376,49.0795,18.9167););out;`)
+    axios.get(`https://overpass-api.de/api/interpreter?data=[out:json];(node["highway"="bus_stop"](48.3711,17.3376,49.0795,18.9167););out;`)
         .then(response => {
             // Process OSM data
             const data = response.data;
