@@ -7,7 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Function to fetch and display points of interest
-function displayPointsOfInterest(type, icon) {
+function displayPointsOfInterest(type, icon, color) {
     // Clear existing markers of the specified type
     map.eachLayer(layer => {
         if (layer instanceof L.Marker && layer.options.icon.options.iconUrl.includes(icon)) {
@@ -33,8 +33,15 @@ function displayPointsOfInterest(type, icon) {
 
                     // Check if the element is within the map bounds and belongs to Trenciansky Kraj
                     if (bounds.contains([lat, lon]) && !bounds.contains([48.5946, 17.7373]) && !bounds.contains([48.8767, 17.6213])) {
-                        // Create marker with specified SVG icon
-                        const marker = L.marker([lat, lon], { icon: L.icon({ iconUrl: `icons/${icon}` }) }).bindPopup(`<b>${name}</b><br>Latitude: ${lat}<br>Longitude: ${lon}`);
+                        // Create marker with specified SVG icon and color
+                        const marker = L.marker([lat, lon], {
+                            icon: L.icon({
+                                iconUrl: `icons/${icon}`,
+                                iconSize: [32, 32], // Adjust icon size if necessary
+                                iconAnchor: [16, 32], // Adjust icon anchor if necessary
+                            })
+                        }).bindPopup(`<b>${name}</b><br>Latitude: ${lat}<br>Longitude: ${lon}`);
+                        marker.setIconColor(color); // Set marker color
                         map.addLayer(marker);
                     }
                 }
@@ -48,13 +55,13 @@ map.on('zoomend moveend', function() {
     // Display points of interest when zoomed in and moved
     if (map.getZoom() >= 12) {
         // Display bus stops
-        displayPointsOfInterest("highway=bus_stop", "bus_stop.svg");
+        displayPointsOfInterest("highway=bus_stop", "bus_stop.svg", "#008bcb");
         // Display tram stops
-        displayPointsOfInterest("amenity=tram_stop", "tram_stop.svg");
+        displayPointsOfInterest("amenity=tram_stop", "tram_stop.svg", "#560000");
         // Display train stations
-        displayPointsOfInterest("railway=station", "train_station.svg");
+        displayPointsOfInterest("railway=station", "train_station.svg", "#ff671f");
         // Display bus stations
-        displayPointsOfInterest("amenity=bus_station", "bus_station.svg");
+        displayPointsOfInterest("amenity=bus_station", "bus_station.svg", "#008bcb");
     } else {
         // Clear markers if zoomed out
         map.eachLayer(layer => {
@@ -66,7 +73,7 @@ map.on('zoomend moveend', function() {
 });
 
 // Display points of interest initially
-displayPointsOfInterest("highway=bus_stop", "bus_stop.svg");
-displayPointsOfInterest("amenity=tram_stop", "tram_stop.svg");
-displayPointsOfInterest("railway=station", "train_station.svg");
-displayPointsOfInterest("amenity=bus_station", "bus_station.svg");
+displayPointsOfInterest("highway=bus_stop", "bus_stop.svg", "#008bcb");
+displayPointsOfInterest("amenity=tram_stop", "tram_stop.svg", "#560000");
+displayPointsOfInterest("railway=station", "train_station.svg", "#ff671f");
+displayPointsOfInterest("amenity=bus_station", "bus_station.svg", "#008bcb");
