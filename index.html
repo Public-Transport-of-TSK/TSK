@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Web App Title</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Include Leaflet.markercluster CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
+    <!-- Include custom CSS -->
+    <style>
+        /* Your custom CSS styles */
+        header {
+            background-color: #004d90; /* Header background color */
+            color: white; /* Text color */
+            padding: 20px 10px; /* Padding around header content (top/bottom: 20px, left/right: 10px) */
+            display: flex; /* Use flexbox layout */
+            justify-content: space-between; /* Space items evenly across header */
+            align-items: center; /* Center-align items vertically */
+        }
+        #logo {
+            height: 40px; /* Set height of the logo */
+            margin-right: auto; /* Push logo to the very left */
+        }
+        #logo-link {
+            margin-right: 10px; /* Add some space between logo and other content */
+        }
+        #tsk-logo {
+            height: 40px; /* Set height of the TSK logo */
+            margin-left: auto; /* Push TSK logo to the very right */
+        }
+        #map {
+            height: calc(100vh - 70px); /* Adjust map height to fit remaining space below header */
+            width: 100%; /* Make the map container full width */
+        }
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            overflow: hidden; /* Hide overflow to prevent scroll bars */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- PNG Logo on the very left -->
+        <a href="index.html" id="logo-link">
+            <img src="logos/your-logo.png" alt="Your Logo" id="logo">
+        </a>
+        <!-- Space for additional content in the middle -->
+        <div></div>
+        <!-- SVG Logo on the very right -->
+        <a href="https://www.tsk.sk/">
+            <img src="logos/tsk-logo.svg" alt="TSK Logo" id="tsk-logo">
+        </a>
+    </header>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Include Leaflet library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Include Leaflet.markercluster library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+    <!-- Include Axios library for making HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Include your JavaScript file -->
+    <script src="app.js"></script> <!-- Make sure to adjust the path if needed -->
+</body>
+</html>
